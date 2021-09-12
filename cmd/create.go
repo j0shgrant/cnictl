@@ -44,13 +44,11 @@ var createCmd = &cobra.Command{
 			log.Fatalf("failed to load cni configuration: %v", err)
 		}
 
-		res, err := c.Setup(ctx, id, netnsDir + "/" + netns, cni.WithLabels(internal.Labels(id)))
+		_, err = c.Setup(ctx, id, netnsDir + "/" + netns, cni.WithLabels(internal.Labels(id)))
 		if err != nil {
 			_, _ = fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
-
-		res.
 
 		fmt.Printf("Created CNI network [%s]\n", id)
 		os.Exit(0)
